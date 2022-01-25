@@ -68,10 +68,32 @@ class Attrify(dict):
 #Thanks to @Dragsama for his attrify module
 
 class SYL:
-    def __init__(self) -> None:
+    def __init__(self,  token) -> None:
         self.url = "https://sylviorus.up.railway.app/"
+        self.admin_token = token
 
 
     def get_info(self , user):
         data = get(self.url+"user/{}".format(user))
         return Attrify(data.json())
+
+    def get_ban(self, user, reason, enforcer):
+        data = {
+            "user": user,
+            "reason": reason,
+            "enforcer": enforcer,
+            "admin_token": self.admin_token
+        }
+        k = post(f"{self.base}ban", json=data)
+        return k.text
+
+    def get_unban(self, user):
+        data = {"user": user, "admin_token": self.admin_token}
+        k = post(f"{self.base}unban", json=data)
+        return k.text
+
+    
+
+   
+  
+     
