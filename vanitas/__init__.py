@@ -67,9 +67,9 @@ class Attrify(dict):
 
 #Thanks to @Dragsama for his attrify module
 
-class SYL:
+class VANITAS:
     def __init__(self,  token) -> None:
-        self.url = "https://sylviorus.up.railway.app/"
+        self.url = "https://vanitas-api.up.railway.app/"
         self.admin_token = token
 
 
