@@ -2,9 +2,9 @@
 
 
 ```
-from vanitas import VANITAS
+from vanitas importUser
 
-fk = VANITAS()
+fk = User()
 
 x = fk.get_info(2022120134)
 print(x)
