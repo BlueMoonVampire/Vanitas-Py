@@ -67,15 +67,21 @@ class Attrify(dict):
 
 #Thanks to @Dragsama for his attrify module
 
-class VANITAS:
-    def __init__(self,  token) -> None:
+class User:
+    def __init__(self) -> None:
         self.url = "https://vanitas-api.up.railway.app/"
-        self.admin_token = token
 
 
     def get_info(self , user):
         data = get(self.url+"user/{}".format(user))
         return Attrify(data.json())
+
+
+class Dev:
+    def __init__(self,  token) -> None:
+        self.url = "https://vanitas-api.up.railway.app/"
+        self.admin_token = token
+
 
     def get_ban(self, user, reason, enforcer):
         data = {
