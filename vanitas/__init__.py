@@ -9,10 +9,7 @@ class Attrify(dict):
     """Custom dict to access dict keys as attributes."""
 
     def __init__(self, *args, **kwargs):
-        if args:
-            cdict = args[0]
-        else:
-            cdict = kwargs
+        cdict = args[0] if args else kwargs
         for key in cdict:
             if isinstance(cdict[key], dict):
                 cdict[key] = Attrify(cdict[key])
@@ -35,10 +32,10 @@ class Attrify(dict):
     def to_dict(self) -> Dict[str, Any]:
         """Convert Attrify back to dict."""
         _dict = dict(self)
-        for key in _dict:
+        for key, value in _dict.items():
             if isinstance(_dict[key], Attrify):
                 _dict[key] = _dict[key].to_dict()
-            elif isinstance(_dict[key], (list, tuple, set)):
+            elif isinstance(value, (list, tuple, set)):
                 new_list = []
                 for i in _dict[key]:
                     if isinstance(i, Attrify):
